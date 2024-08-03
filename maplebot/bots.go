@@ -332,6 +332,10 @@ func handleGroupMessage(message *GroupMessage) bool {
 				} else {
 					userId := strconv.Itoa(int(message.Sender.UserId))
 					arr := getBossNumber(data)
+					if len(arr) == 0 {
+						sendGroupMessage(message, &Text{Text: "这是去幼儿园的车"})
+						return true
+					}
 					subscribe(arr, userId)
 					sendGroupMessage(message, &Text{Text: "订阅成功 " + string(arr)})
 				}
